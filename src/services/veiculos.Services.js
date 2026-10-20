@@ -8,7 +8,7 @@ class veiculosService{
 
     async getById(id) {
         const res = await pool.query("SELECT * FROM veiculos WHERE id = $1", [id]);
-        return res.rows[0] ?? null;
+        return res.rows[0];
     }
 
     async create({modelo, marca, ano, placa}) {
