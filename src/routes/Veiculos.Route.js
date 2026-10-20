@@ -12,6 +12,16 @@ veiculosRouter.get("/", async (req, res) => {
         console.error (error);
     }
 });
+
+veiculosRouter.get("/:id", async (req, res) => {
+    try {
+        const veiculo = await veiculosServices.getById(req.params.id);
+        res.json(veiculo);
+    } catch (error) {
+        console.error (error);
+    }
+});
+
 veiculosRouter.post("/", async (req, res) => {
     try {
         const veiculos = await veiculosServices.create(req.body);
