@@ -15,7 +15,8 @@ veiculosRouter.get("/", async (req, res) => {
 
 veiculosRouter.get("/:id", async (req, res) => {
     try {
-        const veiculo = await veiculosServices.getById(req.params.id);
+        const id = req.params.id;
+        const veiculo = await veiculosServices.getById(id);
         res.json(veiculo);
     } catch (error) {
         console.error (error);
@@ -27,6 +28,16 @@ veiculosRouter.post("/", async (req, res) => {
         const veiculos = await veiculosServices.create(req.body);
          res.status(201).json(veiculos);
     }catch (error) {
+        console.error (error);
+    }
+});
+
+veiculosRouter.delete("/:id", async (req, res) => {
+    const veiculosId = req.params.Id
+    try {
+        const veiculo = await veiculosServices.delete(veiculosId);
+        res.json(veiculo);
+    } catch (error) {
         console.error (error);
     }
 });
